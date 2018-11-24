@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions,
   WebView
 } from 'react-native';
 import { WebBrowser } from 'expo';
@@ -19,27 +20,97 @@ export default class HomeScreen extends React.Component {
     header: null,
   };
 
-  log(e) {
-    console.log(e);
+  constructor(props) {
+    super(props);
+    this.state = { lekarz: null, diagnoza: null };
   }
 
-  onMessage(data) {
+  onMessage = (event) => {
+    //console.log(event)
+    //console.log("We got event!")
     //Prints out data that was passed.
-    console.log(data);
+    if(event && event.nativeEvent.data){
+      //console.log(event.nativeEvent)
+      //console.log(event.nativeEvent.data)
+
+      //const obj = JSON.parse(event.nativeEvent.data);
+      //we got info from webview - get the data and close it
+      //console.log("We got event!")
+      const parsedData = JSON.parse(event.nativeEvent.data)
+
+
+      if(parsedData.diagnoza){
+        console.log("MAMY DIAGNOZE!")
+        console.log(parsedData.diagnoza);
+        console.log(parsedData.lekarz);
+        this.setState({ diagnoza: parsedData.diagnoza});
+    }
+      if(parsedData.lekarz){
+          console.log("MAMY DIAGNOZE!")
+          console.log(parsedData.diagnoza);
+          console.log(parsedData.lekarz);
+          this.setState({lekarz: parsedData.lekarz});
+      }
+      
+    }
   }
 
-  render() {
+  render = () => {
+
+    if(this.state.lekarz!=null){
+      var partsOfStr = this.state.lekarz.split(',');
+
+      return(<View><Text>Twoj lekarz to {partsOfStr[0]}</Text></View>)
+    }
+    else  if(this.state.diagnoza!=null){
+      //var partsOfStr = this.state.lekarz.split(',');
+      let ScreenHeight = Dimensions.get("window").height;
+      //return(<View><Text>Twoj lekarz to {partsOfStr[0]}</Text></View>)
+      var hide_web_view = <View style={{height:ScreenHeight}}><Text>Twoja dianoza to {this.state.diagnoza}</Text></View>
+    }  else{
+      var hide_web_view = <View></View>
+    }
+
     return (
       <View style={styles.container}>
+      {hide_web_view}
       <WebView
-        source={{uri: 'https://symptomate.com/diagnosis/pl/#0-47'}}
+        source={{uri: 'https://symptomate.com/diagnosis/pl/'}}
         style={{marginTop: 20}}
-        onMessage={this.onMessage}
+        onMessage={this.onMessage }
+        injectedJavaScript={`
+        $('header > .container').hide();
+ 
+          function CheckFinal()
+          {
+                if( $('.header:contains("Wyniki")').text()==="Wyniki"){
+
+                      $('html, body').scrollTop($(document).height());
+
+                      var $container = $("html,body");
+                      var $scrollTo = $('.doctors-localization');
+                      $container.animate({scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop(), scrollLeft: 0},300);
+                      
+                      const diagnoza ={"diagnoza":$('.condition-content').text(), "lekarz":$('.specializations').text()};
+                      window.postMessage(JSON.stringify(diagnoza));
+                    }
+          };
+
+          setInterval( CheckFinal, 100 );
+    
+        `}
+    
+        onNavigationStateChange={(navEvent)=> console.log(navEvent)}//navEvent.jsEvaluationValue
+
       />
         
       </View>
     );
   }
+//const a = {"lekarz":$('.specializations').text(), "diagnoza":$('.specializations').text()};
+//                   const diagnoza = $('.condition-content').text()
+//console.log($('.condition-content').text())
+//console.log($('.specializations').text())
 
   _maybeRenderDevelopmentModeWarning() {
     if (__DEV__) {
