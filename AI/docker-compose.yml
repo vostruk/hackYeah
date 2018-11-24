@@ -1,8 +1,7 @@
 web:
   build: .
-  command: python -u main.py
   ports:
-    - "3000:5000"
+    - "5000:5000"
   links:
     - db
 db:
