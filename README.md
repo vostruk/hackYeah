@@ -4,8 +4,7 @@
 ## Motivation
 When it comes to healthcare despite having really good public information systems NFZ lacks a client facing application where patient can get all of their data. 
 
-![mobile app](https://i.imgur.com/tcFNom4.png)
-
+<img src="https://i.imgur.com/tcFNom4.png" width="200">
 We present here platform that let's you:
 * Find a specialist that you need, with online diagnose (using API [symptomate] https://symptomate.com)
 * Get schedules of treatments (from [terminy leczenia] https://api.nfz.gov.pl/#structure)
@@ -18,26 +17,27 @@ Mobile app is user friendly. Runs on both android and ios. To build it we used r
 ## Screens
 
 #### Historical treatment, report and rate
-![diagnose](https://i.imgur.com/dqMqDUI.png)
-![diagnose](https://i.imgur.com/vpcSofT.png)
-![diagnose](https://i.imgur.com/f3sthsb.png)
+<img src="https://i.imgur.com/dqMqDUI.png" width="200">
+<img src="https://i.imgur.com/vpcSofT.png" width="200">
+<img src="https://i.imgur.com/f3sthsb.png" width="200">
+
 
 #### Diagnose and show doctors
 ##### Online diagnose
-![diagnose](https://i.imgur.com/HnagOmc.png)
-![diagnose](https://i.imgur.com/YU0kLBf.png)
-![diagnose](https://i.imgur.com/CaRtRoT.png)
-![diagnose](https://i.imgur.com/onRPzdX.png)
-![diagnose](https://i.imgur.com/1KrtkAl.png)
+<img src="https://i.imgur.com/HnagOmc.png" width="200">
+<img src="https://i.imgur.com/YU0kLBf.png" width="200">
+<img src="https://i.imgur.com/CaRtRoT.png" width="200">
+<img src="https://i.imgur.com/onRPzdX.png" width="200">
+<img src="https://i.imgur.com/1KrtkAl.png" width="200">
 
 ##### Next we show you a recomendation to a list of places you could go to based on your symptoms
-![diagnose](https://i.imgur.com/aZupPuH.png)
+<img src="https://i.imgur.com/aZupPuH.png" width="200">
 
 ##### We give you a detailed window with information about the place and all contact details you need to book a visit
-![diagnose](https://i.imgur.com/8dvpccc.png)
+<img src="https://i.imgur.com/8dvpccc.png" width="200">
 
 #### Find available dates for treatment
-![diagnose](https://i.imgur.com/3qWFpwf.png)
+<img src="https://i.imgur.com/3qWFpwf.png" width="200">
 
 
 ## What you find in this repository
