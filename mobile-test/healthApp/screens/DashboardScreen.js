@@ -4,6 +4,10 @@ import { Card } from 'react-native-elements';
 
 export default class DashboardScreen extends React.Component {
 
+  static navigationOptions = {
+    title: 'Pulpit',
+  };
+
   render() {
     return(
       <View style={styles.container}>
@@ -42,7 +46,6 @@ export default class DashboardScreen extends React.Component {
             </View>
           </Card>
         </TouchableOpacity>
-
       </View>
 
     );
