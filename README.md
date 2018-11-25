@@ -14,6 +14,12 @@ We present here platform that let's you:
 
 Mobile app is user friendly. Runs on both android and ios. To build it we used react-native.
 
+
+## Gifs
+
+<img src="javonetIo.gif" width="200">
+<img src="javonetIo1.gif" width="200">
+
 ## Screens
 
 #### Historical treatment, report and rate
