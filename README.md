@@ -34,7 +34,6 @@ Mobile app is user friendly. Runs on both android and ios. To build it we used r
 <img src="https://i.imgur.com/YU0kLBf.png" width="200">
 <img src="https://i.imgur.com/CaRtRoT.png" width="200">
 <img src="https://i.imgur.com/onRPzdX.png" width="200">
-<img src="https://i.imgur.com/1KrtkAl.png" width="200">
 
 ##### Next we show you a recomendation to a list of places you could go to based on your symptoms
 <img src="https://i.imgur.com/aZupPuH.png" width="200">
