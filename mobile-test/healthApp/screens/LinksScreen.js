@@ -7,7 +7,9 @@ import {List, ListItem } from 'react-native-elements';
 var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 export default class LinksScreen extends React.Component {
-  
+  static navigationOptions = {
+    title: 'Przychodnie',
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +40,8 @@ GetItem (dane) {
   componentDidMount() {
     console.log('https://api.nfz.gov.pl/queues?page=1&limit=10&format=json&case=1&province=07&benefit='+ this.props.navigation.getParam('lekarzId') +'&locality=warszawa');
     return fetch('https://api.nfz.gov.pl/queues?page=1&limit=10&format=json&case=1&province=07&benefit='+ this.props.navigation.getParam('lekarzId') +'&locality=warszawa')
-        .then((response) => response.json())
+    //return fetch('https://api.nfz.gov.pl/queues?page=1&limit=10&format=json&case=1&province=07&benefit=laryngolog&locality=warszawa')    
+    .then((response) => response.json())
         .then((responseJson) => {
          // just setState here e.g.
          this.setState({ dataSource: responseJson.data,isLoading: false });
@@ -93,7 +96,12 @@ GetItem (dane) {
           data={this.state.dataSource}
           renderItem={({item}) => (<ListItem
             title={`${item.attributes.benefit} ${item.attributes.provider}`}
-            subtitle={item.attributes.phone}
+            subtitle={item.attributes.dates.date}
+            onPress = {() => 
+              {this.props.navigation.navigate('Settings', {
+              hospitalData: item.attributes,
+            })
+          }}
           /> )}
           keyExtractor={(item, index) => index}
         />
