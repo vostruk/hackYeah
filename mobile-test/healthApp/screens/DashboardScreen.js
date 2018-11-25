@@ -46,6 +46,18 @@ export default class DashboardScreen extends React.Component {
             </View>
           </Card>
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Links')}}>
+          <Card containerStyle={styles.dashboardCard}>
+            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
+            <Image style={{width: 54, height: 51, marginRight: 16}} source={require('../assets/images/scope.png')} />
+            <View>
+              <Text style={styles.cardHeading}>Lekarze w okolicy</Text>
+              <Text style={styles.cardText}>Wyświetl listę specjalizstów{"\n"}w mojej okolicy</Text>
+            </View>
+            </View>
+          </Card>
+        </TouchableOpacity>
       </View>
 
     );
