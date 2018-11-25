@@ -108,7 +108,7 @@ GetItem (dane) {
           }}
           ItemSeparatorComponent={this.renderSeparator}
           data={this.state.dataSource}
-          renderItem={({item}) => (<ListItem
+          renderItem={({item}) => <ListItem
             title={
               <View>
                 <Text style={{ fontFamily: "Montserrat-SemiBold", fontSize: 18, paddingTop: 6 }}>{item.attributes.dates.date}</Text>
@@ -141,7 +141,7 @@ GetItem (dane) {
               hospitalData: item.attributes,
             })
           }}
-          /> )}
+          /> }
           keyExtractor={(item, index) => index}
         />
       </View>

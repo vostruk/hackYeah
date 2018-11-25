@@ -8,10 +8,10 @@ export default class DashboardScreen extends React.Component {
     title: 'Pulpit',
   };
 
-  render() {
+  render = () =>  {
     return(
       <View style={styles.container}>
-      <TouchableOpacity onPress={this._onPressButton}>
+      <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home')}}>
         <Card containerStyle={styles.dashboardCard}>
           <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
             <Image style={{width: 57, height: 48, marginRight: 16}} source={require('../assets/images/diagnoses.png')} />
@@ -23,7 +23,7 @@ export default class DashboardScreen extends React.Component {
           </Card>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={this._onPressButton}>
+        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Links')}}>
           <Card containerStyle={styles.dashboardCard}>
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
               <Image style={{width: 55, height: 48, marginRight: 16}} source={require('../assets/images/calendar.png')} />
@@ -35,7 +35,7 @@ export default class DashboardScreen extends React.Component {
           </Card>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={this._onPressButton}>
+        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Links')}}>
           <Card containerStyle={styles.dashboardCard}>
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
             <Image style={{width: 54, height: 51, marginRight: 16}} source={require('../assets/images/history.png')} />

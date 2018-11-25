@@ -16,6 +16,7 @@ const HomeStack = createStackNavigator({
   Home: HomeScreen,
 });
 
+/*
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
@@ -29,11 +30,13 @@ HomeStack.navigationOptions = {
     />
   ),
 };
+*/
 
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
 });
 
+/*
 LinksStack.navigationOptions = {
   tabBarLabel: 'Links',
   tabBarIcon: ({ focused }) => (
@@ -43,11 +46,13 @@ LinksStack.navigationOptions = {
     />
   ),
 };
+*/
 
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
 });
 
+/*
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
   tabBarIcon: ({ focused }) => (
@@ -57,9 +62,11 @@ SettingsStack.navigationOptions = {
     />
   ),
 };
+*/
 
 export default createBottomTabNavigator({
   DashStack,
+  HomeStack,
   LinksStack,
   SettingsStack,
 });
