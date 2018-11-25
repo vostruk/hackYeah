@@ -71,6 +71,9 @@ export default class HomeScreen extends React.Component {
       const lekarze = this.state.lekarz.split(/[ ,]+/);
       console.log(lekarze)
       var partsOfStr = this.getProperDoctor(lekarze);
+      this.props.navigation.navigate('Links', {
+        lekarzId: partsOfStr,
+      });
       //todo: send to screen to get list of placowki
       return(<View style={{alignItems:'center', backgroundColor:'white'}}>
         <Text style={{margin:20, textAlign:'center'}}>Szukamy przychodnie na najbliższy termin.</Text>
@@ -78,6 +81,7 @@ export default class HomeScreen extends React.Component {
         </Text>
         <Image source={require('../assets/images/doctor_patient.gif')} />
         </View>)
+        
     }
     else  if(this.state.diagnoza!=null){
       //var partsOfStr = this.state.lekarz.split(',');
