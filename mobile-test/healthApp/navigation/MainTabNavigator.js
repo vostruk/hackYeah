@@ -8,65 +8,19 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 
-const DashStack = createStackNavigator({
-  dash: DashboardScreen,
+const Stack = {
+  dash: {screen: DashboardScreen},
+  Home: {screen: HomeScreen},
+  Links: {screen: LinksScreen}
+}
+
+export default createStackNavigator(Stack, {
+  navigationOptions: {
+    header:null,
+    headerLeft: null,
+    headerMode: "none",
+    tabBarVisible: false,
+  },
+  swipeEnabled: true,
+  lazy: true
 })
-
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-});
-
-/*
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
-};
-*/
-
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-});
-
-/*
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-    />
-  ),
-};
-*/
-
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
-
-/*
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
-  ),
-};
-*/
-
-export default createBottomTabNavigator({
-  DashStack,
-  HomeStack,
-  LinksStack,
-  SettingsStack,
-});
