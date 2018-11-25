@@ -28,7 +28,8 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* google-chrome-unstable_current_amd64.deb
 
 MAINTAINER David J Eddy <me@davidjeddy.com>
+RUN npm install babel-core babel-jest babel-preset-env mongodb jest puppeteer
 COPY ./ /app
 WORKDIR /app
-RUN npm install babel-core babel-jest babel-preset-env mongodb jest puppeteer
-CMD ["npm", "test"]
+#CMD ["npm", "test"]
+CMD ["npm", "start"]

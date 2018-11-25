@@ -1,11 +1,5 @@
 version: "2"
 services:
-  zipapp:
-    build: .
-    ports:
-      - "3000:3000"
-    links:
-      - mongo
   mongo:
     container_name: mongo
     image: mongo
@@ -13,3 +7,12 @@ services:
       - ./data:/data/db
     ports:
       - "27017:27017"
+    volumes:
+      - ./data:/data/db
+  zipapp:
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+

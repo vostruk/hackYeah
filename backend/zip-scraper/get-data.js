@@ -4,8 +4,20 @@ var app = express();
 
 const MongoClient = require('mongodb').MongoClient;
 
+
+
 // Connection URL
 const url = 'mongodb://mongo:27017';
+
+
+MongoClient.connect(url, function(err, db) {
+  if(err) {
+      console.log('database is not connected')
+  }
+  else {
+      console.log('connected!!')
+  }
+});
 
 // Database Name
 const dbName = 'zipdata';
@@ -56,15 +68,15 @@ app.get('/api/scrape-zip', function(req, res) {
 })
 
 app.get('/api/zip', function (req, res) {
-   const collection = db.collection('visits');
+   const collection = db.collection('ziphistory');
    
   collection.find({}).toArray(function(err, docs) {
     assert.equal(err, null);
     console.log("Found the following records");
     console.log(docs)
-    callback(docs);
+    res.send(docs);
   });
-   res.send(docs);
+   
 })
 
 var server = app.listen(8081, function () {
@@ -73,4 +85,9 @@ var server = app.listen(8081, function () {
    
    console.log("Backend app is listening at http://%s:%s", host, port)
 })
+
+
+//use zipdata
+//db.ziphistory.insertOne( { date: Date.now()-30, place: "PORADNIE SPECJALISTYCZNE GABINET DERMATOLOGICZNY ul. ŚREDNIA 3 60-123 POZNAŃ", type:"Ambulatoryjne", cost:16.00})
+
 
