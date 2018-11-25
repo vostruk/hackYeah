@@ -25,8 +25,12 @@ def get_prediction():
     feature1 = float(request.args.get('f1'))
     feature2 = float(request.args.get('f2'))
     feature3 = float(request.args.get('f3'))
+    feature4 = float(request.args.get('f4'))
+    feature5 = float(request.args.get('f5'))
+    feature6 = float(request.args.get('f6'))
+    feature7 = float(request.args.get('f7'))
     loaded_model = pickle.load(open('trained_model.pkl', 'rb'))
-    prediction = loaded_model.predict([[feature1, feature2, feature3]])
+    prediction = loaded_model.predict([[feature1, feature2, feature3, feature4, feature5, feature6, feature7]])
     return str(prediction)
 
 @app.route('/train_model')
