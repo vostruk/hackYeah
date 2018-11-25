@@ -40,8 +40,15 @@ GetItem (dane) {
 
   componentDidMount() {
     console.log('https://api.nfz.gov.pl/queues?page=1&limit=10&format=json&case=1&province=07&benefit='+ this.props.navigation.getParam('lekarzId') +'&locality=warszawa');
-    return fetch('https://api.nfz.gov.pl/queues?page=1&limit=10&format=json&case=1&province=07&benefit='+ this.props.navigation.getParam('lekarzId') +'&locality=warszawa')
-    //return fetch('https://api.nfz.gov.pl/queues?page=1&limit=10&format=json&case=1&province=07&benefit=laryngolog&locality=warszawa')
+    //return fetch('https://api.nfz.gov.pl/queues?page=1&limit=10&format=json&case=1&province=07&benefit='+ this.props.navigation.getParam('lekarzId') +'&locality=warszawa')
+    console.log('https://api.nfz.gov.pl/benefits?page=1&limit=1&format=json&name='+this.props.navigation.getParam('lekarzId'));
+    fetch('https://api.nfz.gov.pl/benefits?page=1&limit=1&format=json&name='+this.props.navigation.getParam('lekarzId'))
+    .then((response) => response.json())
+        .then((responseJsonBenef) => {
+         // just setState here e.g.     
+         console.log('https://api.nfz.gov.pl/queues?page=1&limit=10&format=json&case=1&province=07&benefit='+ responseJsonBenef.data +'&locality=warszawa');
+    return fetch('https://api.nfz.gov.pl/queues?page=1&limit=10&format=json&case=1&province=07&benefit='+ responseJsonBenef.data +'&locality=warszawa');
+  })
     .then((response) => response.json())
         .then((responseJson) => {
          // just setState here e.g.
@@ -50,7 +57,8 @@ GetItem (dane) {
         .catch((error) => {
           console.error(error);
         });
-  }
+        //end of return
+}
 
   ListViewItemSeparator = () => {
     return (
