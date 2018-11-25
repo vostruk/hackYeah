@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 
 import { AppRegistry, StyleSheet, ActivityIndicator, ListView, Text, View, Alert, FlatList } from 'react-native';
 
-import {List, ListItem } from 'react-native-elements';
+import {List, ListItem, Rating } from 'react-native-elements';
+
 
 var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 export default class LinksScreen extends React.Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +16,7 @@ export default class LinksScreen extends React.Component {
     }
   }
 GetItem (dane) {
-   
+
   Alert.alert(dane);
 
   }
@@ -27,7 +28,7 @@ GetItem (dane) {
         this.setState({
           isLoading: false,
           dataSource: ds.cloneWithRows(responseJson),
-        });     
+        });
       console.log(dataSource);
     } catch(e) {
       console.log();
@@ -52,7 +53,7 @@ GetItem (dane) {
         style={{
           height: .5,
           width: "100%",
-          backgroundColor: "#000",
+          backgroundColor: "#ececec",
         }}
       />
     );
@@ -61,7 +62,7 @@ GetItem (dane) {
     return (
       <View
         style={{
-          height: 1,
+          height: 0,
           width: "86%",
           backgroundColor: "#CED0CE",
           marginLeft: "14%"
@@ -85,17 +86,44 @@ GetItem (dane) {
     return (
 
       <View style={styles.MainContainer}>
-      
+
       <FlatList
+          style={{
+            fontSize: 16,
+            backgroundColor: "#ffffff",
+            width: "100%",
+          }}
           ItemSeparatorComponent={this.renderSeparator}
           data={this.state.dataSource}
           renderItem={({item}) => (<ListItem
-            title={`${item.attributes.benefit} ${item.attributes.provider}`}
-            subtitle={item.attributes.phone}
+            title={
+              <View>
+                <Text style={{ fontFamily: "Montserrat-SemiBold", fontSize: 18, paddingTop: 6 }}>{item.attributes.dates.date}</Text>
+              </View>}
+            subtitle={
+              <View>
+                <Text style={{ fontFamily: "Montserrat-Regular", color: "#515151", fontSize: 14, marginTop: 5, paddingBottom: 3 }}>{item.attributes.provider}</Text>
+                <View style={{ flexDirection: "row",
+                               alignItems: "center",
+                               justifyContent: "flex-start" }}>
+                  <Text style={{ fontFamily: "Montserrat-SemiBold", marginRight: 4, fontSize: 16 }}>3,6</Text>
+                  <Rating
+                    type="star"
+                    fractions={1}
+                    startingValue={3.6}
+                    readonly
+                    imageSize={16}
+                    onFinishRating={this.ratingCompleted}
+                    onStartRating={this.ratingStarted}
+                    style={{ paddingVertical: 10 }}
+                  />
+                </View>
+              </View>
+            }
+            chevronColor="#3184E7"
           /> )}
           keyExtractor={(item, index) => index}
         />
-
       </View>
     );
   }
@@ -103,17 +131,21 @@ GetItem (dane) {
 
 const styles = StyleSheet.create({
 
+list: {
+  fontSize: 16,
+  backgroundColor: "#ffffff"
+},
+
 MainContainer :{
 // Setting up View inside content in Vertically center.
 justifyContent: 'center',
 flex:1,
-margin: 10
+margin: 0
 },
 rowViewContainer: {
         fontSize: 20,
-        paddingRight: 10,
-        paddingTop: 10,
-        paddingBottom: 10,
+        paddingRight: 20,
+        paddingBottom: 20,
       }
 
 });
