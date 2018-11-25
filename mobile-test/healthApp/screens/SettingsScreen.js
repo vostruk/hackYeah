@@ -1,7 +1,7 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
 import { AppRegistry, StyleSheet, ActivityIndicator, ListView, Text, View, Alert, FlatList } from 'react-native';
-
+import {Icon} from 'react-native-elements';
 export default class SettingsScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -10,30 +10,29 @@ export default class SettingsScreen extends React.Component {
     title: 'Ustawienia',
   };
 
-  _renderCancel() {
-    if (this.state.showCancel) {
-        return (
-            <TouchableHighlight 
-                onPress={this.toggleCancel()}>
-                <View>
-                    <Text style={styles.cancelButtonText}>Cancel</Text>
-                </View>
-            </TouchableHighlight>
-        );
-    } else {
-        return null;
-    }
-}
+  renderElevator = () => {
+    return(
+    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Icon name="ios-chat" size={20} />
+    <Text>
+      2 replies
+    </Text>
+ </View>
+    )
+  }
 
   render() {
     console.log(this.props.navigation.getParam('hospitalData'));
     return(
+      
     <View style={styles.MainContainer}>
+    
     <Text>{this.props.navigation.getParam('hospitalData').dates.date}</Text>
     <Text>{this.props.navigation.getParam('hospitalData').provider}</Text>
     <Text>{this.props.navigation.getParam('hospitalData').locality + " " + this.props.navigation.getParam('hospitalData').address  }</Text>
-    
+    {this.renderElevator()}
     </View>
+    
     /* Go ahead and delete ExpoConfigView and replace it with your
      * content, we just wanted to give you a quick view of your config */
     );
@@ -53,6 +52,21 @@ const styles = StyleSheet.create({
           paddingRight: 10,
           paddingTop: 10,
           paddingBottom: 10,
-        }
+        },
+        storyCounters: {
+          width: 25,
+        },
+        
+        iconCounter: {
+          fontSize: 21,
+          color: '#bbbbbb',
+          textAlign: 'center',
+        },
+        
+        iconCounterText: {
+          color: '#bbbbbb',
+          fontSize: 12,
+          textAlign: 'center'
+        },
   
   });
