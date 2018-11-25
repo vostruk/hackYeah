@@ -18,6 +18,8 @@ import { MonoText } from '../components/StyledText';
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
+    title: 'Wizyta',
+  
   };
 
   constructor(props) {
@@ -55,18 +57,40 @@ export default class HomeScreen extends React.Component {
     }
   }
 
+  getProperDoctor(arr){
+    return arr.sort((a,b) =>
+          arr.filter(v => v===a).length
+        - arr.filter(v => v===b).length
+    ).pop();
+}
+
+
   render = () => {
 
     if(this.state.lekarz!=null){
-      var partsOfStr = this.state.lekarz.split(',');
-
-      return(<View><Text>Twoj lekarz to {partsOfStr[0]}</Text></View>)
+      const lekarze = this.state.lekarz.split(/[ ,]+/);
+      console.log(lekarze)
+      var partsOfStr = this.getProperDoctor(lekarze);
+      //todo: send to screen to get list of placowki
+      return(<View style={{alignItems:'center', backgroundColor:'white'}}>
+        <Text style={{margin:20, textAlign:'center'}}>Szukamy przychodnie na najbliższy termin.</Text>
+        <Text style={{margin:20, textAlign:'center'}}>Twoj rekomendowany lekarz to {partsOfStr}
+        </Text>
+        <Image source={require('../assets/images/doctor_patient.gif')} />
+        </View>)
     }
     else  if(this.state.diagnoza!=null){
       //var partsOfStr = this.state.lekarz.split(',');
       let ScreenHeight = Dimensions.get("window").height;
       //return(<View><Text>Twoj lekarz to {partsOfStr[0]}</Text></View>)
-      var hide_web_view = <View style={{height:ScreenHeight}}><Text>Twoja dianoza to {this.state.diagnoza}</Text></View>
+      var hide_web_view = <View style={{height:ScreenHeight, alignItems:'center'}}>
+      <Text style={{margin:20, textAlign:'center'}}>
+          Nasz algorytm wykrył że możliwe objawy dla Ciebie to {this.state.diagnoza.join(' lub ')}
+      </Text>
+      <Text style={{margin:20, textAlign:'center'}}>Daj nam chwile a zaproponujemy Ci 
+      najlepszy termin oraz miejsce wizyty do lekarza</Text>
+      <Image source={require('../assets/images/loader1.gif')} />
+      </View>
     }  else{
       var hide_web_view = <View></View>
     }
@@ -91,7 +115,7 @@ export default class HomeScreen extends React.Component {
                       var $scrollTo = $('.doctors-localization');
                       $container.animate({scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop(), scrollLeft: 0},300);
                       
-                      const diagnoza ={"diagnoza":$('.condition-content').text(), "lekarz":$('.specializations').text()};
+                      const diagnoza ={"diagnoza":$('.condition-content > a').toArray().map((el)=>el.innerText), "lekarz":$('.specializations').text()};
                       window.postMessage(JSON.stringify(diagnoza));
                     }
           };
