@@ -5,6 +5,7 @@ import { AppRegistry, StyleSheet, ActivityIndicator, ListView, Text, View, Alert
 import {List, ListItem } from 'react-native-elements';
 
 var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
 export default class LinksScreen extends React.Component {
   
   constructor(props) {
@@ -35,7 +36,8 @@ GetItem (dane) {
   }
 
   componentDidMount() {
-    return fetch('https://api.nfz.gov.pl/queues?page=1&limit=10&format=json&case=1&province=07&benefit=stomatolog&locality=warszawa')
+    console.log('https://api.nfz.gov.pl/queues?page=1&limit=10&format=json&case=1&province=07&benefit='+ this.props.navigation.getParam('lekarzId') +'&locality=warszawa');
+    return fetch('https://api.nfz.gov.pl/queues?page=1&limit=10&format=json&case=1&province=07&benefit='+ this.props.navigation.getParam('lekarzId') +'&locality=warszawa')
         .then((response) => response.json())
         .then((responseJson) => {
          // just setState here e.g.
