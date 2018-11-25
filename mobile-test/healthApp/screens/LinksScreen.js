@@ -99,51 +99,47 @@ GetItem (dane) {
     return (
 
       <View style={styles.MainContainer}>
-
+      
       <FlatList
-          style={{
-            fontSize: 16,
-            backgroundColor: "#ffffff",
-            width: "100%",
-          }}
+      style={{
+        fontSize: 16,
+        backgroundColor: "#ffffff",
+        width: "100%",
+      }}
           ItemSeparatorComponent={this.renderSeparator}
           data={this.state.dataSource}
-          renderItem={({item}) => <ListItem
+          renderItem={({item}) => (<ListItem
             title={
               <View>
                 <Text style={{ fontFamily: "Montserrat-SemiBold", fontSize: 18, paddingTop: 6 }}>{item.attributes.dates.date}</Text>
-              </View>}
+              
+              </View>
+            }
             subtitle={
               <View>
-                <Text style={{ fontFamily: "Montserrat-Regular", color: "#515151", fontSize: 14, marginTop: 5, paddingBottom: 3 }}>{item.attributes.provider}</Text>
-                <View style={{ flexDirection: "row",
-                               alignItems: "center",
-                               justifyContent: "flex-start" }}>
-                  <Text style={{ fontFamily: "Montserrat-SemiBold", marginRight: 4, fontSize: 16 }}>3,6</Text>
-                  <Rating
+              <Text style={{ fontFamily: "Montserrat-Regular", color: "#515151", fontSize: 14, marginTop: 5, paddingBottom: 3 }}>{item.attributes.provider}</Text>
+              <Rating
                     type="star"
                     fractions={1}
-                    startingValue={3.6}
+                    startingValue={4.5}
                     readonly
                     imageSize={16}
                     onFinishRating={this.ratingCompleted}
                     onStartRating={this.ratingStarted}
                     style={{ paddingVertical: 10 }}
                   />
-                </View>
               </View>
+              
             }
-            chevronColor="#3184E7"
-            title={`${item.attributes.benefit} ${item.attributes.provider}`}
-            subtitle={item.attributes.dates.date}
-            onPress = {() =>
+            onPress = {() => 
               {this.props.navigation.navigate('Settings', {
               hospitalData: item.attributes,
             })
           }}
-          /> }
+          /> )}
           keyExtractor={(item, index) => index}
         />
+
       </View>
     );
   }
@@ -160,7 +156,8 @@ MainContainer :{
 // Setting up View inside content in Vertically center.
 justifyContent: 'center',
 flex:1,
-margin: 0
+margin: 0,
+marginTop:10,
 },
 rowViewContainer: {
         fontSize: 20,

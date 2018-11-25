@@ -11,7 +11,8 @@ import DashboardScreen from '../screens/DashboardScreen';
 const Stack = {
   dash: {screen: DashboardScreen},
   Home: {screen: HomeScreen},
-  Links: {screen: LinksScreen}
+  Links: {screen: LinksScreen},
+  Settings: {screen: SettingsScreen}
 }
 
 export default createStackNavigator(Stack, {

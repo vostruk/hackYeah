@@ -141,6 +141,7 @@ We used
 * **Łukasz Berwid**
 
 #### Disclaimer
-Project made for Malta Blockchain Summit hackathon 2018c</br>
-[hackaton website](https://malta-blockchain.devpost.com) </br>
-[project page](https://devpost.com/software/tpass)
+[presentation](https://docs.google.com/presentation/d/1oR6GMsmk33Tx_7qnNM48wSbJiAuOU2ZGzWPbaXqjipI/edit#slide=id.g460c5168e6_1_23)
+Project made for HackYeach hackathon 2018c</br>
+[hackaton website](hackyeah.pl/tasks.html) </br>
+[project page](https://expo.io/@ostruk/healthApp)
